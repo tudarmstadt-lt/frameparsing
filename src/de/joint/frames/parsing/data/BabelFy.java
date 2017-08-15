@@ -11,8 +11,8 @@ import net.sf.json.JSONArray;
  */
 public class BabelFy 
 {
-    // stefano.faralli user key
-     private final static String userkey="b638fdf1-ac43-4a2f-b6fa-9862047dd26f";
+    
+     private final static String userkey="yourkeyhere";
      private final static String USER_AGENT = "Mozilla/5.0";
      
     public static String babelfy(String text) throws UnsupportedEncodingException, Exception
