@@ -16,13 +16,16 @@ Figure 1: Overview of our pipeline for the construcion of a hybrid aligned resou
 
 
 
-#<b>Learning a JoBimText model</b>
+#<b>Learning a JoBimText model</b><br/>
 Section under construction.
 
-#<b>Disambiguation of related words</b>
+#<b>Disambiguation of related words</b><br/>
 Section under construction.
 
-#<b>Linking to a lexical resource</b>
--Configuration
+#<b>Linking to a lexical resource</b><br/>
+We provide the source code for the linking with <a href="http://www.babelnet.org/">BabeblNet</a> and <a href="https://wordnet.princeton.edu/">WordNet</a>.<br>
 
--Usage 
+-Configuration<br/>
+prerequirements
+
+-Usage<br/> 
