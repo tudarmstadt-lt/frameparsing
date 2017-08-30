@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/linking/IterativeMappingToWordNet.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/linking/MFSMappingToWordNet.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/linking/IterativeMappingToBabelNet.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/thesaurus/Thesaurus.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/linking/MonosemousMappingToBabelNet.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/linking/NEW_MonosemousMappingToWordNet0b.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/linking/MFSMappingToBabelNet.java</file>
-            <file>file:/media/sfaralli/7443d700-324c-4594-8f33-737f36ca8b38/corpora/DDTS/WEBRESOURCE/linkedsddt/src/de/joint/thesaurus/ThesaurusGenaralStatistics.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

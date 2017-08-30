@@ -4,7 +4,7 @@ import de.joint.linking.IterativeMappingToBabelNet;
 import de.joint.linking.MonosemousMappingToBabelNet;
 import java.io.IOException;
 
-public class Linker {
+public class Linker2BN {
 
     public static void main(String[] args) throws IOException {
         printHeader();
@@ -26,12 +26,12 @@ public class Linker {
 
     public static void printHeader() {
 
-        System.out.println("DDTs Linker v 1.0");
+        System.out.println("DDTs Linker2BN v 1.0");
     }
 
     public static void printUsage() {
 
-        System.out.println("linker.sh <datafolder> <csvfilename> <numofiterations>");
+        System.out.println("linkerBN.sh <datafolder> <csvfilename> <numofiterations>");
         System.out.println("<datafolder> the path containing the ddt in the csv format;");
         System.out.println("<csvfilename> the filename of the ddt in the csv format;");
         System.out.println("<numofiterations> the number of iterations (integer value);");
