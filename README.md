@@ -28,17 +28,18 @@ We provide the source code for the linking with <a href="http://www.babelnet.org
 <item> Prerequirements<br/>
 In order to correctly execute the linking procedure please follow this three steps:<br> 
 <ol>
-<item>Serializtion:<br/> 
+<item>1) <b>Thesauri serializtions</b><br/> 
 <i>serializeThesaurus.sh</i><br/> 
 </item>
-<item></item>
-<item></item>
+<item>2) <b>BabeblNet</b> following the instructions from  http://babelnet.org/  download the Java API and the lastest index distribution. 
+Copy both the API jar and the "config" folder into the project folder "dist/lib/";</item>
+<item>3) </b>WordNet</b> download the lastest WordNet distribution from https://wordnet.princeton.edu/ and install the resource in some specific folder <i>WORDNETFOLDER</i> (e.g. "/opt/WordNet-3.1/") </item>
 </ol>
 </item> Usage:
 <ul>
 <item>Link to BabelNet:<br/> 
-<i>linker2BN.sh</i></item>
+ execute <i>linker2BN.sh <FOLDER> <FILE> <ITERATIONS></i></item>
 <item>Link to WordNet:<br/> 
-<i>linker2WN.sh</i><br/></item> 
+execute <i>linker2WN.sh <FOLDER> <FILE> <ITERATIONS> <WORDNETFOLDER></i></item>
 </ul>
 </ul>
