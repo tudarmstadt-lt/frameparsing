@@ -29,3 +29,9 @@ We provide the source code for the linking with <a href="http://www.babelnet.org
 prerequirements
 
 -Usage<br/> 
+Serializtion:<br/> 
+<i>serializeThesaurus.sh</i><br/> 
+Link to BabelNet:<br/> 
+<i>linker2BN.sh</i><br/> 
+Link to WordNet:<br/> 
+<i>linker2WN.sh</i><br/> 
