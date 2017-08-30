@@ -24,14 +24,21 @@ Section under construction.
 
 #<b>Linking to a lexical resource</b><br/>
 We provide the source code for the linking with <a href="http://www.babelnet.org/">BabeblNet</a> and <a href="https://wordnet.princeton.edu/">WordNet</a>.<br>
-
--Configuration<br/>
-prerequirements
-
--Usage<br/> 
-Serializtion:<br/> 
+<ul>
+<item> Prerequirements<br/>
+In order to correctly execute the linking procedure please follow this three steps:<br> 
+<ol>
+<item>Serializtion:<br/> 
 <i>serializeThesaurus.sh</i><br/> 
-Link to BabelNet:<br/> 
-<i>linker2BN.sh</i><br/> 
-Link to WordNet:<br/> 
-<i>linker2WN.sh</i><br/> 
+</item>
+<item></item>
+<item></item>
+</ol>
+</item> Usage:
+<ul>
+<item>Link to BabelNet:<br/> 
+<i>linker2BN.sh</i></item>
+<item>Link to WordNet:<br/> 
+<i>linker2WN.sh</i><br/></item> 
+</ul>
+</ul>
