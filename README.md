@@ -41,7 +41,7 @@ Copy both the API jar and the "config" folder into the project folder "dist/lib/
 </item> Usage:
 <ul>
 <item>Link to BabelNet:<br/> 
- execute <i>linker2BN.sh FOLDER FILE ITERATIONS</i></item>
+ execute <i>linker2BN.sh FOLDER FILE ITERATIONS</i><br></item>
 <item>Link to WordNet:<br/> 
 execute <i>linker2WN.sh FOLDER FILE ITERATIONS WORDNETFOLDER</i></item>
 </ul>
