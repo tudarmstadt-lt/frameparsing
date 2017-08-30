@@ -1,7 +1,9 @@
 #Linked Disambiguated Distributional Semantic Networks<br>
 Source code related to the <a href="http://web.informatik.uni-mannheim.de/joint/">JOIN-T</a> project.
- 
+
 #Creation of Disambiguated Distributional Semantic-based Sense Inventories (PCZs)<br>
+We provide in this repository all the source code needed for the induction of distributional semantic-based sense inventories form corpora. 
+
 
 Our approach consists of three main phases (Figure 1):<br>
 1) Learning a JoBimText model: initially, we automatically create a sense inventory from a large text collection using the pipeline of the JoBimText project;<br>
@@ -12,3 +14,12 @@ Our approach consists of three main phases (Figure 1):<br>
 ![ScreenShot](http://web.informatik.uni-mannheim.de/joint/img/jointworkflow.png)<br>
 Figure 1: Overview of our pipeline for the construcion of a hybrid aligned resource.
 
+
+
+#Learning a JoBimText model
+
+
+#Disambiguation of related words
+
+
+#Linking to a lexical resource
