@@ -1,5 +1,8 @@
+Please note we are currently working hard to the contents of this repository.<br>
+
 #<b>Linked Disambiguated Distributional Semantic Networks</b><br>
-Source code related to the <a href="http://web.informatik.uni-mannheim.de/joint/">JOIN-T</a> project.
+Source code related to the <a href="http://web.informatik.uni-mannheim.de/joint/">JOIN-T</a> project.<br>
+
 
 #<b>Creation of Disambiguated Distributional Semantic-based Sense Inventories (PCZs)</b><br>
 We provide in this repository all the source code needed for the induction of distributional semantic-based sense inventories form corpora. 
