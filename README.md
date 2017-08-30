@@ -29,7 +29,7 @@ We provide the source code for the linking with <a href="http://www.babelnet.org
 In order to correctly execute the linking procedure please follow this three steps:<br> 
 <ol>
 <item>1) <b>Thesauri serializtions</b><br/> 
-<i>serializeThesaurus.sh</i><br/> 
+<i>serializeThesaurus.sh FOLDER GZIPPEDTHESAURUS</i><br/> 
 </item>
 <item>2) <b>BabeblNet</b> following the instructions from  http://babelnet.org/  download the Java API and the lastest index distribution. 
 Copy both the API jar and the "config" folder into the project folder "dist/lib/";</item>
