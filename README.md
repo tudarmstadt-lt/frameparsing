@@ -37,6 +37,7 @@ In order to correctly execute the linking procedure please follow this three ste
 <item>2) <b>BabeblNet</b> following the instructions from  http://babelnet.org/  download the Java API and the lastest index distribution. 
 Copy both the API jar and the "config" folder into the project folder "dist/lib/";</item>
 <item>3) </b>WordNet</b> download the lastest WordNet distribution from https://wordnet.princeton.edu/ and install the resource in some specific folder <i>WORDNETFOLDER</i> (e.g. "/opt/WordNet-3.1/") </item>
+<item>4) run `install-deps.sh` to install the BabelNet JARs into your local Maven repository.</item>
 </ol>
 </item> Usage:
 <ul>
