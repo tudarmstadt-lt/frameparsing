@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author sfaralli
  */
-public class ThesaurusGenaralStatistics 
+public class ThesaurusGeneralStatistics
 {
     
     
@@ -121,7 +121,7 @@ public class ThesaurusGenaralStatistics
        String thesauri = data + dd+".csv.gz";  
         
       Thesaurus t=Thesaurus.fromSerFile(thesauri+".ser");
-      ThesaurusGenaralStatistics ugs = new ThesaurusGenaralStatistics();
+      ThesaurusGeneralStatistics ugs = new ThesaurusGeneralStatistics();
       ugs.analyze(t);
       ugs.printStatistics();
     }
