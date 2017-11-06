@@ -40,7 +40,7 @@ public class WordNetGraph extends DefaultDirectedGraph<String, DefaultEdge> impl
 
     static final long serialVersionUID = 1010101210;
     private static WordNetGraph instance = null;
-    public Multimap<String, String> wordpos2nodes = HashMultimap.create();
+    public Multimap<String, String> wordpos2nodes = new HashMultimap<>();
 
     private WordNetGraph() {
         super(DefaultEdge.class);

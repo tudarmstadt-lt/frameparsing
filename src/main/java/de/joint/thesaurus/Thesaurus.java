@@ -35,10 +35,10 @@ import java.util.zip.GZIPInputStream;
 public class Thesaurus implements Serializable {
 
     static final long serialVersionUID = 1212121212;
-    public Multimap<String, String> word2ids = HashMultimap.create();
+    public Multimap<String, String> word2ids = new HashMultimap<>();
     public Map<String, String> id2word = new HashMap<>();
-    public Multimap<String, String> ids2related = HashMultimap.create();
-    public Multimap<String, String> ids2hypernym = HashMultimap.create();
+    public Multimap<String, String> ids2related = new HashMultimap<>();
+    public Multimap<String, String> ids2hypernym = new HashMultimap<>();
 
     public void toSerFile(String filename) {
         try (
@@ -69,7 +69,7 @@ public class Thesaurus implements Serializable {
             id2newid.put(k, id2word.get(s));
         }
         id2word = id2newid;
-        Multimap<String, String> nids2related = HashMultimap.create();
+        Multimap<String, String> nids2related = new HashMultimap<>();
         for (String s : ids2related.keySet()) {
             String k = s.replace(".0", "");
             for (String ssk : ids2related.get(s)) {
@@ -78,7 +78,7 @@ public class Thesaurus implements Serializable {
         }
         ids2related = nids2related;
 
-        Multimap<String, String> nids2hypernym = HashMultimap.create();
+        Multimap<String, String> nids2hypernym = new HashMultimap<>();
         for (String s : ids2hypernym.keySet()) {
             String k = s.replace(".0", "");
             for (String ssk : ids2hypernym.get(s)) {

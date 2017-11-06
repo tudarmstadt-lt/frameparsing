@@ -47,3 +47,13 @@ Copy both the API jar and the "config" folder into the project folder "dist/lib/
 execute <i>linker2WN.sh FOLDER FILE ITERATIONS WORDNETFOLDER</i></item>
 </ul>
 </ul>
+
+## BabelNet Dependencies
+
+This software uses BabelNet API of version 2.5.1 that is not distributed via Maven. However, it is necessary to install two dependencies: `babelnet-api` and `jlt`.
+
+```bash
+$ cd BabelNet-API-2.5.1
+$ mvn install:install-file -Dfile=lib/jlt-1.0.0.jar -DgroupId=it.uniroma1.lcl -DartifactId=jlt -Dversion=1.0.0 -Dpackaging=jar
+$ mvn install:install-file -Dfile=babelnet-api-2.5.1.jar -DgroupId=it.uniroma1.lcl.babelnet -DartifactId=babelnet-api -Dversion=2.5.1 -Dpackaging=jar
+```

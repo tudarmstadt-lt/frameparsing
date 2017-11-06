@@ -161,7 +161,7 @@ public class IterativeMappingToBabelNet {
 
                     DoubleCounter<String> rank = new DoubleCounter<>();
 
-                    Multimap<String, BabelSynset> syn2hyp = HashMultimap.create();
+                    Multimap<String, BabelSynset> syn2hyp = new HashMultimap<>();
                     for (BabelSynset candidate : candidates) {
                         BabelSynset synset = candidate;
                         Set<String> bbow = new HashSet<>();

@@ -26,9 +26,19 @@
             <version>1.1.1</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>0.8</version>
         </dependency>
         <dependency>
             <groupId>org.jgrapht</groupId>
@@ -36,9 +46,9 @@
             <version>0.9.0</version>
         </dependency>
         <dependency>
-            <groupId>it.uniroma1.lcl.jlt</groupId>
-            <artifactId>jltutils</artifactId>
-            <version>2.2</version>
+            <groupId>it.uniroma1.lcl</groupId>
+            <artifactId>jlt</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>it.uniroma1.lcl.babelnet</groupId>
@@ -49,6 +59,11 @@
             <groupId>edu.mit</groupId>
             <artifactId>jwi</artifactId>
             <version>2.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>2.9.1</version>
         </dependency>
     </dependencies>
 
