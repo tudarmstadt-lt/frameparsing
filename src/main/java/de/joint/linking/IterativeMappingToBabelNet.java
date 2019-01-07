@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import de.joint.thesaurus.Thesaurus;
 
+import de.joint.util.Counter;
 import edu.mit.jwi.item.IPointer;
 import edu.mit.jwi.item.POS;
 import it.uniroma1.lcl.babelnet.BabelGloss;
@@ -11,12 +12,12 @@ import it.uniroma1.lcl.babelnet.BabelNet;
 import it.uniroma1.lcl.babelnet.BabelPointer;
 import it.uniroma1.lcl.babelnet.BabelSense;
 import it.uniroma1.lcl.babelnet.BabelSynset;
-import it.uniroma1.lcl.jlt.util.DoubleCounter;
-import it.uniroma1.lcl.jlt.util.Files;
 import it.uniroma1.lcl.jlt.util.Language;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -47,10 +48,11 @@ public class IterativeMappingToBabelNet {
             System.out.println("Loading Previous Map...");
             for (int i = 0; i < step; i++) {
                 BufferedReader br;
+
                 if (i == 0) {
-                    br = Files.getBufferedReader(datafoler + csvfilename + ".iterative_" + i + "_babelnet.map.tsv");
+                    br = Files.newBufferedReader(Paths.get(datafoler + csvfilename + ".iterative_" + i + "_babelnet.map.tsv"));
                 } else {
-                    br = Files.getBufferedReader(datafoler + csvfilename + ".iterative_" + i + "_0.0_babelnet.map.tsv");
+                    br = Files.newBufferedReader(Paths.get(datafoler + csvfilename + ".iterative_" + i + "_0.0_babelnet.map.tsv"));
                 }
 
                 br.ready();
@@ -72,7 +74,7 @@ public class IterativeMappingToBabelNet {
             }
 
             System.out.println("...ok.");
-            BufferedWriter bw = Files.getBufferedWriter(thesauri_map);
+            BufferedWriter bw = Files.newBufferedWriter(Paths.get(thesauri_map));
             bw.write("JOBIMID\tBN_ID\tBN_SENSE\tHYPERNYMS\tAVGDEGREE\tCANDIDATEDEGREE\tINDUCEDSUBWNGRAPHDEGREE\n");
             System.out.println("Step:" + step + " Analyzing thesaurus again ...");
 
@@ -159,7 +161,7 @@ public class IterativeMappingToBabelNet {
                     }
                     /* compute H */
 
-                    DoubleCounter<String> rank = new DoubleCounter<>();
+                    Map<String, Double> rank = new HashMap<>();
 
                     Multimap<String, BabelSynset> syn2hyp = new HashMultimap<>();
                     for (BabelSynset candidate : candidates) {
@@ -191,24 +193,26 @@ public class IterativeMappingToBabelNet {
                         if (totalwords > 0.0) {
                             avgdegree = (double) bbow.size() / (double) totalwords;
                         }
-                        rank.count(synset.getId(), avgdegree);
+                        rank.merge(synset.getId(), avgdegree, Double::sum);
                     }
 
-                    double top = rank.getTopValue();
+                    double top = rank.values().stream().mapToDouble(e -> e).max().orElse(0d);
                     int num = 0;
-                    for (String candidate : rank.getSortedElements()) {
-                        if (rank.get(candidate) == top) {
+
+                    for (final Map.Entry<String, Double> candidate: Counter.sortedIterator(rank)) {
+                        if (candidate.getValue() == top) {
                             num++;
                         }
                     }
+
                     boolean mapped = false;
                     if (top > 0 && num == 1) {
-                        for (String candidate : rank.getSortedElements()) {
-                            if (rank.get(candidate) != top) {
+                        for (final Map.Entry<String, Double> candidate : Counter.sortedIterator(rank)) {
+                            if (candidate.getValue() != top) {
                                 continue;
                             }
 
-                            BabelSynset sense = bn.getSynsetFromId(candidate);
+                            BabelSynset sense = bn.getSynsetFromId(candidate.getKey());
 
                             StringBuilder sb = new StringBuilder();
                             for (BabelSynset is : syn2hyp.get(sense.getId())) {
@@ -219,13 +223,13 @@ public class IterativeMappingToBabelNet {
                                 ssb = ssb.substring(1);
                             }
 
-                            bw.write(wid + "\t" + candidate + "\t"
+                            bw.write(wid + "\t" + candidate.getKey() + "\t"
                                     + sense.getId() + "\t"
                                     + ssb + "\t"
                                     + top + "\n");
                             bw.flush();
                             mapped = true;
-                            System.out.println("\t" + candidate + "\t" + sense.getId() + "\t" + ssb + "\t" + top);
+                            System.out.println("\t" + candidate.getKey() + "\t" + sense.getId() + "\t" + ssb + "\t" + top);
                         }
                     }
                     if (!mapped) {

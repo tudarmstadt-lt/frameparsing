@@ -8,10 +8,11 @@ import edu.mit.jwi.item.ISynsetID;
 import edu.mit.jwi.item.IWord;
 import edu.mit.jwi.item.POS;
 import edu.mit.jwi.item.SynsetID;
-import it.uniroma1.lcl.jlt.util.Files;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -41,7 +42,7 @@ public class MonosemousMappingToWordNet {
         WordNetGraph wng = WordNetGraph.getInstance(wnlocation);
         JWIWordNet wn = new JWIWordNet(wnlocation);
         System.out.println("...ok.");
-        BufferedWriter bw = Files.getBufferedWriter(thesauri_map);
+        BufferedWriter bw = Files.newBufferedWriter(Paths.get(thesauri_map));
         bw.write("JOBIMID\tWN_ID\tWN_SENSE\tHYPERNYMS\tAVGDEGREE\tCANDIDATEDEGREE\tINDUCEDSUBWNGRAPHDEGREE\n");
         System.out.println("Analyzing monosemous...");
         for (String word : thes.word2ids.keySet()) 

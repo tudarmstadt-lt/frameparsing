@@ -5,10 +5,12 @@ import de.joint.thesaurus.Thesaurus;
 import edu.mit.jwi.item.POS;
 import it.uniroma1.lcl.babelnet.BabelNet;
 import it.uniroma1.lcl.babelnet.BabelSense;
-import it.uniroma1.lcl.jlt.util.Files;
 import it.uniroma1.lcl.jlt.util.Language;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 /**
@@ -32,7 +34,8 @@ public class MonosemousMappingToBabelNet {
 
         BabelNet bn = BabelNet.getInstance();
         System.out.println("...ok.");
-        BufferedWriter bw = Files.getBufferedWriter(thesauri_map, true);
+        /* TODO: In the original code the file is opened in the append mode. Is this a bug? */
+        BufferedWriter bw = Files.newBufferedWriter(Paths.get(thesauri_map), StandardOpenOption.APPEND);
         bw.write("JOBIMID\tBN_ID\tBN_SENSE\tHYPERNYMS\tAVGDEGREE\tCANDIDATEDEGREE\tINDUCEDSUBWNGRAPHDEGREE\n");
         System.out.println("Analyzing monosemous...");
         

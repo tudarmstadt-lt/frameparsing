@@ -7,6 +7,7 @@ package de.joint.linking;
 
 
 import de.joint.thesaurus.Thesaurus;
+import de.joint.util.Counter;
 import de.joint.wordnet.JWIWordNet;
 import de.joint.wordnet.WordNetGraph;
 import edu.mit.jwi.item.ISynset;
@@ -14,11 +15,11 @@ import edu.mit.jwi.item.ISynsetID;
 import edu.mit.jwi.item.IWord;
 import edu.mit.jwi.item.POS;
 import edu.mit.jwi.item.SynsetID;
-import it.uniroma1.lcl.jlt.util.DoubleCounter;
-import it.uniroma1.lcl.jlt.util.Files;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -56,9 +57,9 @@ public class IterativeMappingToWordNet {
          {
               BufferedReader br;
             if (i==0)
-              br= Files.getBufferedReader(datafoler + csvfilename + ".iterative_" + i + "_wordnet.map.tsv");
+              br= Files.newBufferedReader(Paths.get(datafoler + csvfilename + ".iterative_" + i + "_wordnet.map.tsv"));
             else
-                   br= Files.getBufferedReader(datafoler + csvfilename + ".iterative_" + i + "_0.0_wordnet.map.tsv");
+                   br= Files.newBufferedReader(Paths.get(datafoler + csvfilename + ".iterative_" + i + "_0.0_wordnet.map.tsv"));
            
           
             br.readLine();
@@ -76,7 +77,7 @@ public class IterativeMappingToWordNet {
         }
 
         System.out.println("...ok.");
-        BufferedWriter bw = Files.getBufferedWriter(thesauri_map);
+        BufferedWriter bw = Files.newBufferedWriter(Paths.get(thesauri_map));
         bw.write("JOBIMID\tWN_ID\tWN_SENSE\tHYPERNYMS\tAVGDEGREE\tCANDIDATEDEGREE\tINDUCEDSUBWNGRAPHDEGREE\n");
         System.out.println("Step:" + step + " Analyzing thesaurus again ...");
 
@@ -136,10 +137,10 @@ public class IterativeMappingToWordNet {
                     }
                   }
               }
-                /* compute F */  
-                
-                
-                DoubleCounter<String> rank = new DoubleCounter<String>();
+                /* compute F */
+
+
+                Map<String, Double> rank = new HashMap<>();
                 Set<String> candidates = new HashSet<String>(wng.wordpos2nodes.get(lemma + ":" + pos));
                 for (String candidate : candidates) 
                 {
@@ -164,22 +165,22 @@ public class IterativeMappingToWordNet {
                     double avgdegree =0.0;
                     if (totalwords>0.0)
                         avgdegree = (double) bbow.size()/ (double) totalwords;
-                    rank.count(candidate, avgdegree);
+                    rank.merge(candidate, avgdegree, Double::sum);
                 }
 
-                double top = rank.getTopValue();
+                double top = rank.values().stream().mapToDouble(e -> e).max().orElse(0d);
                 int num = 0;
-                for (String candidate : rank.getSortedElements()) {
-                    if (rank.get(candidate) == top) {
+                for (final Map.Entry<String, Double> candidate: Counter.sortedIterator(rank)) {
+                    if (candidate.getValue() == top) {
                         num++;
                     }
                 }
                 if (top > 0 && num == 1) {
-                    for (String candidate : rank.getSortedElements()) {
-                        if (rank.get(candidate) != top) {
+                    for (final Map.Entry<String, Double> candidate: Counter.sortedIterator(rank)) {
+                        if (candidate.getValue() != top) {
                             continue;
                         }
-                        ISynsetID sid = SynsetID.parseSynsetID(candidate);
+                        ISynsetID sid = SynsetID.parseSynsetID(candidate.getKey());
                         ISynset sense = wn.getSynset(sid);
                         List<ISynset> hs = wn.getHypernyms(sense);
                         StringBuilder sb = new StringBuilder();
@@ -191,12 +192,12 @@ public class IterativeMappingToWordNet {
                             ssb = ssb.substring(1);
                         }
 
-                        bw.write(wid + "\t" + candidate + "\t"
+                        bw.write(wid + "\t" + candidate.getKey() + "\t"
                                 + sense.toString() + "\t"
                                 + ssb + "\t"
                                 + top + "\n");
 
-                        System.out.println(wid + "\t" + candidate + "\t" + sense.toString() + "\t" + ssb + "\t" + top );
+                        System.out.println(wid + "\t" + candidate.getKey() + "\t" + sense.toString() + "\t" + ssb + "\t" + top );
                     }
                 }
             }
