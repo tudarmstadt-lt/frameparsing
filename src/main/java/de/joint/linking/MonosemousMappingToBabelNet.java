@@ -10,7 +10,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 /**
@@ -34,8 +33,7 @@ public class MonosemousMappingToBabelNet {
 
         BabelNet bn = BabelNet.getInstance();
         System.out.println("...ok.");
-        /* TODO: In the original code the file is opened in the append mode. Is this a bug? */
-        BufferedWriter bw = Files.newBufferedWriter(Paths.get(thesauri_map), StandardOpenOption.APPEND);
+        BufferedWriter bw = Files.newBufferedWriter(Paths.get(thesauri_map));
         bw.write("JOBIMID\tBN_ID\tBN_SENSE\tHYPERNYMS\tAVGDEGREE\tCANDIDATEDEGREE\tINDUCEDSUBWNGRAPHDEGREE\n");
         System.out.println("Analyzing monosemous...");
         
