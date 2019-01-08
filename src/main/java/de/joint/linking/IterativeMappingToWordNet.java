@@ -34,21 +34,22 @@ import org.jgrapht.graph.DefaultEdge;
  * @author sfaralli
  */
 public class IterativeMappingToWordNet {
+    static Thesaurus thes = null;
 
-    public static void map(String datafoler, String csvfilename, int iterations, String wnlocation) throws IOException 
+    public static void map(String datafoler, String csvfilename, int step, String wnlocation) throws IOException
     {
         String thesauri = datafoler + csvfilename;
-        System.out.println("Loading Thesaurus...");
-        Thesaurus thes = Thesaurus.fromSerFile(thesauri + ".ser");
-        System.out.println("...ok.");
-
+        if (thes==null)
+        {
+            System.out.println("Loading Thesaurus...");
+            thes = Thesaurus.fromSerFile(thesauri + ".ser");
+            System.out.println("...ok.");
+        }
         System.out.println("Loading WordNetGraph...");
         WordNetGraph wng = WordNetGraph.getInstance(wnlocation);
         JWIWordNet wn = new JWIWordNet(wnlocation);
         System.out.println("...ok.");
-        for (int step=1;step<9;step++)
-        {
-        
+
         String thesauri_map = datafoler + csvfilename + ".iterative_" + step + "_" + "0.0_wordnet.map.tsv";
            
         Map<String, String> mapping = new HashMap<String, String>();
@@ -204,7 +205,6 @@ public class IterativeMappingToWordNet {
 
         }
         bw.close();
-        }
     }
 
     public static POS getPosFromID(String pos) 
