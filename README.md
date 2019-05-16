@@ -37,7 +37,7 @@ execute <i>linker2WN.sh FOLDER FILE ITERATIONS WORDNETFOLDER</i></item>
 
 ## BabelNet Dependencies
 
-This software uses BabelNet API of version 2.5.1 that is not distributed via Maven. However, it is necessary to install two dependencies: `babelnet-api` and `jlt`.
+This software uses BabelNet API of version 2.5.1 that is not distributed via Maven. However, it is necessary to install three dependencies: `babelnet-api`, `jlt`, and `jwi`.
 
 ```bash
 $ cd BabelNet-API-2.5.1
